@@ -1,0 +1,51 @@
+﻿@using AdminPanel.ModelsDb
+@model Product
+
+@{
+    Layout = "_AdminLayout";
+}
+
+<h2>Delete Product</h2>
+
+<form method="post">
+    <div class="form-row">
+
+        <div class="col-md-4 mb-3">
+            <label>Id</label>
+            <input type="text" class="form-control" asp-for="@Model.Id" readonly>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Model</label>
+            <input type="text" class="form-control" asp-for="@Model.Model" readonly>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Price</label>
+            <input type="text" class="form-control" asp-for="@Model.Price" readonly>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Quantity</label>
+            <input type="text" class="form-control" asp-for="@Model.Quantity" readonly>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Description</label>
+            <textarea type="text" class="form-control" asp-for="@Model.Description" readonly></textarea>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Category</label>
+            <input type="text" class="form-control" asp-for="@Model.IdCategoryNavigation.Name" readonly>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Manufacturer</label>
+            <input type="text" class="form-control" asp-for="@Model.IdManufacturerNavigation.Name" readonly>
+        </div>
+
+        <button type="submit" asp-controller="Products" asp-action="RemoveProduct" class="btn btn-danger">Delete</button>
+        <button type="submit" asp-controller="Products" asp-action="BackToMenu" class="btn btn-primary">Cancel</button>
+    </div>
+</form>

@@ -1,0 +1,69 @@
+﻿@using AdminPanel.ModelsDb
+@model Product
+
+@{
+    Layout = "_AdminLayout";
+
+    WarehouseContext context = new WarehouseContext();
+}
+
+<h2>Edit Product</h2>
+
+<form method="post">
+    <div class="form-row">
+
+        <div class="col-md-4 mb-3">
+            <label>Id</label>
+            <input type="text" class="form-control" asp-for="@Model.Id" readonly>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Model</label>
+            <input type="text" class="form-control" asp-for="@Model.Model">
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Price</label>
+            <input type="text" class="form-control" asp-for="@Model.Price">
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Quantity</label>
+            <input type="text" class="form-control" asp-for="@Model.Quantity">
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Description</label>
+            <textarea type="text" class="form-control" asp-for="@Model.Description"></textarea>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Category</label>
+            <select type="text" class="form-control" asp-for="@Model.IdCategory">
+                @{
+                    List<Category> categories = context.Categories.ToList();
+                }
+                @foreach (Category category in categories)
+                {
+                    <option value="@category.Id">@category.Name</option>
+                }
+            </select>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Manufacturer</label>
+            <select type="text" class="form-control" asp-for="@Model.IdManufacturer">
+                @{
+                    List<Manufacturer> manufacturers = context.Manufacturers.ToList();
+                }
+                @foreach (Manufacturer manufacturer in manufacturers)
+                {
+                    <option value="@manufacturer.Id">@manufacturer.Name</option>
+                }
+            </select>
+        </div>
+
+        <button type="submit" asp-controller="Products" asp-action="SaveChanges" class="btn btn-primary">Save</button>
+        <button type="submit" asp-controller="Products" asp-action="BackToMenu" class="btn btn-outline-danger">Cancel</button>
+    </div>
+</form>

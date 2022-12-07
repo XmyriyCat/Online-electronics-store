@@ -1,0 +1,26 @@
+﻿@using AdminPanel.ModelsDb
+@model Category
+
+@{
+    Layout = "_AdminLayout";
+}
+
+<h2>Delete Category</h2>
+
+<form method="post">
+    <div class="form-row">
+
+        <div class="col-md-4 mb-3">
+            <label>Id</label>
+            <input type="text" class="form-control" asp-for="@Model.Id" readonly>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Category Name</label>
+            <input type="text" class="form-control" asp-for="@Model.Name" readonly>
+        </div>
+
+        <button type="submit" asp-controller="Categories" asp-action="RemoveCategory" class="btn btn-danger">Delete</button>
+        <button type="submit" asp-controller="Categories" asp-action="BackToMenu" class="btn btn-primary">Cancel</button>
+    </div>
+</form>

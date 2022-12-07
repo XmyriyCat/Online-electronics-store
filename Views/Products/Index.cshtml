@@ -1,0 +1,61 @@
+﻿@using AdminPanel.ModelsDb
+
+@model IEnumerable<Product>
+@{
+    Layout = "_AdminLayout";
+}
+
+<h2>Products</h2>
+
+<form method="get">
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Product Model</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="productModel" placeholder="Product model"/>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="offset-sm-3 col-sm-3 d-grid">
+            <button type="submit" asp-controller="Products" asp-action="SearchProducts" class="btn btn-primary">Search</button>
+        </div>
+    </div>
+</form>
+
+<p>@ViewData["lol"]</p>
+@Html.ActionLink("Create New Product", "CreateProduct", "Products", FormMethod.Get)
+    
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Model</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Manufacturer</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in @Model)
+        {
+            <tr>
+                <td>@product.Id</td>
+                <td>@product.Model</td>
+                <td>@product.Price</td>
+                <td>@product.Quantity</td>
+                <td>@product.Description</td>
+                <td>@product.IdCategoryNavigation.Name</td>
+                <td>@product.IdManufacturerNavigation.Name</td>
+                <td>
+                    <form method="get">
+                        <button type="submit" asp-controller="Products" asp-action="EditProduct" class="btn btn-primary btn-sm"asp-route-id="@product.Id">Edit</button>
+                        <button type="submit" asp-controller="Products" asp-action="DeleteProduct" class="btn btn-danger btn-sm" asp-route-id="@product.Id">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

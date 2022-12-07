@@ -1,0 +1,50 @@
+﻿@using AdminPanel.ModelsDb
+
+@model IEnumerable<Manufacturer>
+@{
+    Layout = "_AdminLayout";
+}
+
+<h2>Manufacturers</h2>
+
+<form method="get">
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Manufacturer name</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="manufacturerName" placeholder="Manufacturer" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="offset-sm-3 col-sm-3 d-grid">
+            <button type="submit" asp-controller="Manufacturers" asp-action="SearchManufacturers" class="btn btn-primary">Search</button>
+        </div>
+    </div>
+</form>
+
+@Html.ActionLink("Create New Manufacturer", "CreateManufacturer", "Manufacturers", FormMethod.Get)
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th class="col-md-2">ID</th>
+            <th class="col-md-8">Name</th>
+            <th class="col-md-2">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var manufacturer in @Model)
+        {
+            <tr>
+                <td>@manufacturer.Id</td>
+                <td>@manufacturer.Name</td>
+                <td>
+                    <form method="get">
+                        <button type="submit" asp-controller="Manufacturers" asp-action="EditManufacturer" class="btn btn-primary btn-sm" asp-route-id="@manufacturer.Id">Edit</button>
+                        <button type="submit" asp-controller="Manufacturers" asp-action="DeleteManufacturer" class="btn btn-danger btn-sm" asp-route-id="@manufacturer.Id">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

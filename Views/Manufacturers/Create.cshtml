@@ -1,0 +1,21 @@
+﻿@using AdminPanel.ModelsDb
+@model Manufacturer
+
+@{
+    Layout = "_AdminLayout";
+}
+
+<h2>Create Manufacturer</h2>
+
+<form method="post">
+    <div class="form-row">
+
+        <div class="col-md-4 mb-3">
+            <label>Manufacturer Name</label>
+            <input type="text" class="form-control" asp-for="@Model.Name">
+        </div>
+
+        <button type="submit" asp-controller="Manufacturers" asp-action="CreateManufacturer" class="btn btn-primary">Create</button>
+        <button type="submit" asp-controller="Manufacturers" asp-action="BackToMenu" class="btn btn-outline-danger">Cancel</button>
+    </div>
+</form>
