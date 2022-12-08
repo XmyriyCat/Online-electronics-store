@@ -1,0 +1,25 @@
+﻿@using AdminPanel.ModelsDb
+@model PaymentWay
+
+@{
+    Layout = "_AdminLayout";
+}
+
+<h2>Edit Payment Method</h2>
+
+<form method="post">
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label>Payment Method ID</label>
+            <input type="text" class="form-control" asp-for="@Model.Id" value="@Model.Id" readonly>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Payment Method Name</label>
+            <input type="text" class="form-control" asp-for="@Model.Name" value="@Model.Name">
+        </div>
+
+        <button type="submit" asp-controller="PaymentMethods" asp-action="SavePaymentMethod" class="btn btn-primary">Save</button>
+        <button type="submit" asp-controller="PaymentMethods" asp-action="BackToMenu" class="btn btn-outline-danger">Cancel</button>
+    </div>
+</form>

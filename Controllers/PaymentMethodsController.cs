@@ -62,6 +62,56 @@ namespace AdminPanel.Controllers
             return BackToMenu();
         }
 
+        [HttpGet]
+        [Route("admin/paymentMethods/edit/{id}")]
+        public async Task<IActionResult> EditPaymentMethod(int id)
+        {
+            PaymentWay? paymentWay = await SearchSinglePaymentMethodById(id);
+
+            if (paymentWay is null)
+            {
+                return BadRequest("Payment way is NOT found.");
+            }
+
+            return View("Edit", paymentWay);
+        }
+
+        [HttpPost]
+        [Route("admin/paymentMethods/edit")]
+        public IActionResult SavePaymentMethod(PaymentWay paymentWay)
+        {
+            context.Update(paymentWay);
+            context.SaveChanges();
+            context.Dispose();
+
+            return BackToMenu();
+        }
+
+        [HttpGet]
+        [Route("admin/paymentMethods/delete/{id}")]
+        public async Task<IActionResult> DeletePaymentMethod(int id)
+        {
+            PaymentWay? paymentWay = await SearchSinglePaymentMethodById(id);
+
+            if (paymentWay is null)
+            {
+                return BadRequest("Payment way is NOT found.");
+            }
+
+            return View("Delete", paymentWay);
+        }
+
+        [HttpPost]
+        [Route("admin/paymentMethods/delete")]
+        public IActionResult RemovePaymentMethod(PaymentWay paymentWay)
+        {
+            context.Entry(paymentWay).State = EntityState.Deleted;
+            context.SaveChanges();
+            context.Dispose();
+
+            return BackToMenu();
+        }
+
         public IEnumerable<PaymentWay> SearchPaymentMethodsByName(string paymentName)
         {
             paymentName = paymentName.ToLower();
@@ -72,6 +122,11 @@ namespace AdminPanel.Controllers
         public async Task<IEnumerable<PaymentWay>> SelectAllPaymentsMethods()
         {
             return await context.PaymentWays.ToListAsync();
+        }
+
+        public async Task<PaymentWay?> SearchSinglePaymentMethodById(int id)
+        {
+            return await context.PaymentWays.Where(m => m.Id == id).FirstOrDefaultAsync();
         }
     }
 }
