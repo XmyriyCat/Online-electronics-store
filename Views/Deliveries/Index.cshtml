@@ -1,0 +1,54 @@
+﻿@using AdminPanel.ModelsDb;
+
+@model IEnumerable<Delivery>
+@{
+    Layout = "_AdminLayout";
+}
+
+<h2>Deliveries</h2>
+
+<form method="get">
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Delivery name</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="deliveryName" placeholder="Delivery name" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="offset-sm-3 col-sm-3 d-grid">
+            <button type="submit" asp-controller="Deliveries" asp-action="SearchDelivery" class="btn btn-primary">Search</button>
+        </div>
+    </div>
+</form>
+
+@Html.ActionLink("Create New Delivery", "CreateDelivery", "Deliveries", FormMethod.Get)
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th class="col-md-1">ID</th>
+            <th class="col-md-3">Name</th>
+            <th class="col-md-2">Cost</th>
+            <th class="col-md-2">Description</th>
+            <th class="col-md-2">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var delivery in @Model)
+        {
+            <tr>
+                <td>@delivery.Id</td>
+                <td>@delivery.Name</td>
+                <td>@delivery.Cost</td>
+                <td>@delivery.Description</td>
+                <td>
+                    <form method="get">
+                        <button type="submit" asp-controller="Deliveries" asp-action="EditDelivery" class="btn btn-primary btn-sm" asp-route-id="@delivery.Id">Edit</button>
+                        <button type="submit" asp-controller="Deliveries" asp-action="DeleteDelivery" class="btn btn-danger btn-sm" asp-route-id="@delivery.Id">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,36 @@
+﻿@using AdminPanel.ModelsDb
+@model Delivery
+
+@{
+    Layout = "_AdminLayout";
+}
+
+<h2>Edit Delivery</h2>
+
+<form method="post">
+    <div class="form-row">
+
+        <div class="col-md-4 mb-3">
+            <label>Delivery Id</label>
+            <input type="text" class="form-control" asp-for="@Model.Id" readonly>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Delivery Name</label>
+            <input type="text" class="form-control" asp-for="@Model.Name">
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Delivery Cost</label>
+            <input type="text" class="form-control" asp-for="@Model.Cost">
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Delivery Description</label>
+            <textarea type="text" class="form-control" asp-for="@Model.Description"></textarea>
+        </div>
+
+        <button type="submit" asp-controller="Deliveries" asp-action="SaveDelivery" class="btn btn-primary">Edit</button>
+        <button type="submit" asp-controller="Deliveries" asp-action="BackToMenu" class="btn btn-outline-danger">Cancel</button>
+    </div>
+</form>
