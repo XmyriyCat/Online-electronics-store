@@ -50,6 +50,8 @@ namespace AdminPanel.Controllers
             return View("Create");
         }
 
+        // TODO: Ask about model validation and views.
+
         [HttpPost]
         [Route("admin/deliveries/create")]
         public async Task<IActionResult> CreateDelivery(Delivery delivery)
@@ -110,6 +112,8 @@ namespace AdminPanel.Controllers
 
             return BackToMenu();
         }
+
+        // TODO: Ask about erasing to an other class.
 
         public async Task<Delivery?> SearchSingleDeliveryById(int id)
         {

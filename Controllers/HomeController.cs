@@ -10,6 +10,7 @@ namespace AdminPanel.Controllers
 {
     public class HomeController : Controller
     {
+        // TODO: Is logger needed?
         private readonly ILogger<HomeController> logger;
         private readonly WarehouseContext context;
 
@@ -59,6 +60,7 @@ namespace AdminPanel.Controllers
             return RedirectToAction("index");
         }
 
+        // TODO: Is privacy needed?
         public IActionResult Privacy()
         {
             return View();

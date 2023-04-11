@@ -247,5 +247,6 @@ public partial class WarehouseContext : DbContext
         OnModelCreatingPartial(modelBuilder);
     }
 
+    // TODO: Partial with what?
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }

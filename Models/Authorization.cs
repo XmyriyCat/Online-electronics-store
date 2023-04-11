@@ -11,6 +11,8 @@ namespace AdminPanel.Models
         {
             this.context = context;
         }
+
+        // TODO: Ask about the simplifing the end.
         public bool IsAuthorized(string login, string password)
         {
             Manager? sourceManager = context.Managers
@@ -34,6 +36,7 @@ namespace AdminPanel.Models
             return false;
         }
 
+        //TODO: Ask about the transfer.
         public string GenerateHashHMACSHA256(string password, byte[] salt)
         {
             string hashedPassword = Convert.ToBase64String(KeyDerivation.Pbkdf2(

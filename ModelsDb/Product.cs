@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 namespace AdminPanel.ModelsDb;
 
+// TODO: Ask about nulls. (already nulls by default)
+
 public partial class Product
 {
     public int Id { get; set; }
